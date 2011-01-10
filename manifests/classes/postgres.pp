@@ -40,12 +40,19 @@ class postgres {
             ],
         }
 
-        if $pgversion == '8.3' {
-            $servicename = 'postgresql-8.3'
-            $servicealias = 'postgresql'
-        } else {
-            $servicename = 'postgresql'
-            $servicealias = undef
+        case $pgversion {
+                "8.4": {
+                        $servicename = 'postgresql-8.4'
+                        $servicealias = 'postgresql'
+                }
+                "8.3": {
+                        $servicename = 'postgresql-8.3'
+                        $servicealias = 'postgresql'
+                }
+                "default": {
+                        $servicename = 'postgresql'
+                        $servicealias = undef
+                }
         }
 
         exec { "/etc/init.d/$servicename reload":
