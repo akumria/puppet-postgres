@@ -23,6 +23,7 @@ class postgres {
 
         user { 'postgres':
             ensure  => present,
+            uid     => 133,
             gid     => postgres,
             require => [
                 Group['postgres'],
@@ -31,6 +32,7 @@ class postgres {
 
         group { 'postgres':
             ensure  => present,
+            gid => 133,
         }
 
         file { 'pg_hba':
