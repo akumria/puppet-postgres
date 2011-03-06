@@ -41,6 +41,10 @@ class postgres {
         }
 
         case $pgversion {
+                "9.0": {
+                        $servicename = 'postgresql-9.0'
+                        $servicealias = 'postgresql'
+                }
                 "8.4": {
                         $servicename = 'postgresql-8.4'
                         $servicealias = 'postgresql'
