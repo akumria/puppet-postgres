@@ -17,7 +17,7 @@ class postgres {
             ensure => installed,
             alias  => 'postgres',
             require => [
-                Package['postgresl-common'],
+                Package['postgresql-common'],
             ],
         }
 
