@@ -26,13 +26,11 @@ class postgres {
             gid     => postgres,
             require => [
                 Group['postgres'],
-                Package['postgres'],
             ],
         }
 
         group { 'postgres':
             ensure  => present,
-            require => Package['postgres'],
         }
 
         file { 'pg_hba':
