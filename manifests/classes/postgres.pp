@@ -7,9 +7,11 @@ class postgres {
         package { "postgresql-common":
             ensure => installed,
             before => [
+                Service['postgresql'],
+            ],
+            require => [
                 User['postgres'],
                 Group['postgres'],
-                Service['postgresql'],
             ],
         }
 
