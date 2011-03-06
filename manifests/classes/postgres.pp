@@ -4,13 +4,20 @@ class postgres {
     } else {
         $pgdata = "/etc/postgresql/$pgversion/main"
 
-        package { "postgresql-$pgversion":
+        package { "postgresql-common":
             ensure => installed,
-            alias  => 'postgres',
             before => [
                 User['postgres'],
                 Group['postgres'],
                 Service['postgresql'],
+            ],
+        }
+
+        package { "postgresql-$pgversion":
+            ensure => installed,
+            alias  => 'postgres',
+            require => [
+                Package['postgresl-common'],
             ],
         }
 
