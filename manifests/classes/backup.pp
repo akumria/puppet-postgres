@@ -17,7 +17,7 @@ class postgres::backup {
     owner   => root,
     group   => root,
     mode    => 755,
-    content => template("postgresql/pgsql-backup.sh.erb"),
+    content => template("pgsql-backup.sh.erb"),
     require => File[$postgresql_backupdir],
   }
 
