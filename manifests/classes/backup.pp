@@ -1,4 +1,4 @@
-class postgresql::backup {
+class postgres::backup {
 
   if ( ! $postgresql_backupdir ) {
     $postgresql_backupdir = "/var/backups/pgsql"
