@@ -9,7 +9,7 @@ class postgres::backup {
     owner   => "postgres",
     group   => "postgres",
     mode    => 755,
-    require => [Package["postgresql"], User["postgres"]],
+    require => [Package["postgres"], User["postgres"]],
   }
 
   file { "/usr/local/bin/pgsql-backup.sh":
