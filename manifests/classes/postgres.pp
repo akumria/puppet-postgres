@@ -46,7 +46,6 @@ class postgres {
             command => "/usr/bin/pg_createcluster --start -e UTF8 $pgversion main",
             refreshonly => true,
             require => [
-                Exec["drop initial cluster"],
                 User["postgres"],
             ]
         }
