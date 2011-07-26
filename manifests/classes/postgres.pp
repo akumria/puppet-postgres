@@ -29,7 +29,7 @@ class postgres {
 
         exec {"drop initial cluster":
             command     => "/usr/bin/pg_dropcluster --stop ${pgversion} main",
-            onlyif      => "/usr/bin/test \$(su -c 'psql -lx' postgres |awk '/Encoding/ {printf tolower(\$3)}') = 'sql_asciisql_asciisql_ascii'",
+            onlyif      => "/usr/bin/test \$(psql -lx |awk '/Encoding/ {printf tolower(\$3)}') = 'sql_asciisql_asciisql_ascii'",
             timeout     => 60,
             environment => "PWD=/",
             user => "postgres",
