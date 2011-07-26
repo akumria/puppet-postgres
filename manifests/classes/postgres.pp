@@ -19,10 +19,10 @@ class postgres {
             ensure => installed,
             alias  => 'postgres',
             require => [
+                User["postgres"],
                 Package['postgresql-common'],
             ],
             notify => [
-                User["postgres"],
                 Exec["drop initial cluster"],
                 Exec["create initial cluster"],
             ],
