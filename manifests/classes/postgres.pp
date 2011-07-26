@@ -43,7 +43,6 @@ class postgres {
 
         exec {"create initial cluster":
             command => "/usr/bin/pg_createcluster --start -e UTF8 $pgversion main",
-            user => "postgres",
             require => [
                 Exec["drop initial cluster"],
                 User["postgres"],
