@@ -29,7 +29,7 @@ class postgres {
         }
 
         exec {"drop initial cluster":
-            command     => "pg_dropcluster --stop ${pgversion} main",
+            command     => "/usr/bin/pg_dropcluster --stop ${pgversion} main",
             onlyif      => "test \$(su -c 'psql -lx' postgres |awk '/Encoding/ {printf tolower(\$3)}') = 'sql_asciisql_asciisql_ascii'",
             timeout     => 60,
             environment => "PWD=/",
@@ -40,7 +40,7 @@ class postgres {
         }
 
         exec {"create initial cluster":
-            command => "pg_createcluster --start -e UTF8 $pgversion main",
+            command => "/usr/bin/pg_createcluster --start -e UTF8 $pgversion main",
             user => "postgres",
             require => [
                 Exec["drop initial cluster"],
