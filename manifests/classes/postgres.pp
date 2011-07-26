@@ -21,6 +21,16 @@ class postgres {
             require => [
                 Package['postgresql-common'],
             ],
+            notify => [
+                Exec["drop initial cluster"],
+            ],
+        }
+
+        exec {"drop initial cluster":
+            command     => "pg_dropcluster --stop ${pgversion} main",
+            onlyif      => "test \$(su -c 'psql -lx' postgres |awk '/Encoding/ {printf tolower(\$3)}') = 'sql_asciisql_asciisql_ascii'",
+            timeout     => 60,
+            environment => "PWD=/",
         }
 
         user { 'postgres':
