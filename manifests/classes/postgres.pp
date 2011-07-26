@@ -23,6 +23,7 @@ class postgres {
             ],
             notify => [
                 Exec["drop initial cluster"],
+                Exec["create initial cluster"],
             ],
         }
 
@@ -31,6 +32,13 @@ class postgres {
             onlyif      => "test \$(su -c 'psql -lx' postgres |awk '/Encoding/ {printf tolower(\$3)}') = 'sql_asciisql_asciisql_ascii'",
             timeout     => 60,
             environment => "PWD=/",
+        }
+
+        exec {"create initial cluster":
+            command => "pg_createcluster --start -e UTF8 $pgversion main",
+            require => [
+                Exec["drop initial cluster"],
+            ]
         }
 
         user { 'postgres':
