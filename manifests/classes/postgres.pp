@@ -33,6 +33,7 @@ class postgres {
             timeout     => 60,
             environment => "PWD=/",
             user => "postgres",
+            refreshonly => true,
             require => [
                 User["postgres"],
             ],
@@ -43,6 +44,7 @@ class postgres {
 
         exec {"create initial cluster":
             command => "/usr/bin/pg_createcluster --start -e UTF8 $pgversion main",
+            refreshonly => true,
             require => [
                 Exec["drop initial cluster"],
                 User["postgres"],
