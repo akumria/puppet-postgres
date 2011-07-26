@@ -24,7 +24,6 @@ class postgres {
             ],
             notify => [
                 Exec["drop initial cluster"],
-                Exec["create initial cluster"],
             ],
         }
 
@@ -36,7 +35,10 @@ class postgres {
             user => "postgres",
             require => [
                 User["postgres"],
-            ]
+            ],
+            notify => [
+                Exec["create initial cluster"],
+            ],
         }
 
         exec {"create initial cluster":
