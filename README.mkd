@@ -15,6 +15,41 @@ Will ensure that the database is in UTF-8 and allows you to specify the version 
 
 Also contains a simple backup script too.
 
+## Examples ##
+
+    $pgversion = 8.4
+    include postgres
+    include postgres::backup
+
+    postgres::role { "role":
+        ensure => present,
+        password => "password",
+        require => Service["postgresql"],
+    }
+
+    postgres::database { "database":
+        ensure => present,
+        owner => "role",
+        require => Postres::Role["role"],
+    }
+
+This will ensure that everything is created in the correct dependancy order.
+
+Or, if you are using Ubuntu 10.04 LTS and would like to use the Postgres 9.0 backport:
+
+    apt::source { "pitti-postgresql-lucid":
+        location => "http://ppa.launchpad.net/pitti/postgresql/ubuntu",
+        release => "lucid",
+        include_src => false,
+        key => "8683D8A2"
+    }
+
+    $pgversion = "9.0"
+
+And proceed as above.
+
+The [apt module](http://github.com/akumria/puppet-apt) being used is http://github.com/akumria/puppet-apt.
+
 ## Definitions ##
 
 * postgres::role
