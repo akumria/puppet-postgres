@@ -11,6 +11,10 @@ Manages postgres configuration.
 Ensures virtual package is installed, and that the service is running and starts
 at boot.
 
+Will ensure that the database is in UTF-8 and allows you to specify the version of postgres you would like to use.
+
+Also contains a simple backup script too.
+
 ## Definitions ##
 
 * postgres::role
