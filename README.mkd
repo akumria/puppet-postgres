@@ -21,6 +21,7 @@ at boot.
   postgres::database { "database":
     ensure => present, # or absent
     owner  => "role",
+    require => Postgres::Role["role"],
   }
 
 ### postgres::role ###
