@@ -18,16 +18,15 @@ at boot.
 
 ### postgres::role ###
 
-  postgres::role { "rolename":
-    ensure   => present, # or absent
-    password => "passtext",
-  }
+    postgres::role { "rolename":
+        ensure   => present, # or absent
+        password => "passtext",
+    }
 
 ### postgres::database ###
 
-  postgres::database { "database":
-    ensure => present, # or absent
-    owner  => "role",
-    require => Postgres::Role["role"],
-  }
-
+    postgres::database { "database":
+        ensure => present, # or absent
+        owner  => "role",
+        require => Postgres::Role["role"],
+    }
