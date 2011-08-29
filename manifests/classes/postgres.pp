@@ -83,7 +83,7 @@ class postgres {
             group        => 'postgres',
             path         => "/etc/postgresql/$pgversion/main/postgresql.conf",
             notify       => Exec['postgres-reload'],
-            content      => template("postgresql.conf"),
+            content      => template("puppet-postgres/postgresql.conf"),
             require      => [
                 User['postgres'],
                 Group['postgres'],
