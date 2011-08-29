@@ -76,6 +76,19 @@ class postgres {
             ],
         }
 
+        file { 'postgresql.conf':
+            mode         => 644,
+            owner        => 'postgres',
+            group        => 'postgres',
+            path         => "/etc/postgresql/$pgversion/main/postgresql.conf",
+            notify       => Exec['postgres-reload'],
+            content     => template("postgresql.conf"),
+            require      => [
+                User['postgres'],
+                Group['postgres'],
+            ],
+        }
+
         case $pgversion {
                 "9.0": {
                         $servicename = 'postgresql'
