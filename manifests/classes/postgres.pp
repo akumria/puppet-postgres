@@ -82,7 +82,7 @@ class postgres {
             owner        => 'postgres',
             group        => 'postgres',
             path         => "/etc/postgresql/$pgversion/main/postgresql.conf",
-            notify       => Exec['postgres-reload'],
+            notify       => Exec['postgres-restart'],
             content      => template("puppet-postgres/postgresql.conf"),
             require      => [
                 User['postgres'],
