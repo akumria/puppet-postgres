@@ -115,6 +115,12 @@ class postgres {
             alias       => 'postgres-reload',
         }
 
+        exec { "/etc/init.d/$servicename restart":
+            refreshonly => true,
+            require     => Service['postgresql'],
+            alias       => 'postgres-restart',
+        }
+
         service { $servicename:
             ensure     => running,
             enable     => true,
